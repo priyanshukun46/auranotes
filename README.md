@@ -117,9 +117,9 @@ It makes GitHub's algorithm smile.
 
 > Learning. Building. Shipping. Repeating. 🚀
 
-GitHub: https://github.com/yourusername
+GitHub: https://github.com/priyanshukun46
 
-LinkedIn: https://linkedin.com/in/yourprofile
+LinkedIn: www.linkedin.com/in/priyanshu-kumar-058750277
 
 ---
 
