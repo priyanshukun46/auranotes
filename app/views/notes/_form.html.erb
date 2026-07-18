@@ -1,37 +1,67 @@
-<%= form_with(model: note, class: "contents") do |form| %>
-  <% if note.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
-      <h2><%= pluralize(note.errors.count, "error") %> prohibited this note from being saved:</h2>
+<div class="min-h-screen bg-zinc-50 py-12 px-6">
+  <div class="max-w-2xl mx-auto">
 
-      <ul class="list-disc ml-6">
-        <% note.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+    <%= form_with(model: note, class: "contents") do |form| %>
 
-  <div class="my-5">
-    <%= form.label :title %>
-    <%= form.text_field :title, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": note.errors[:title].none?, "border-red-400 focus:outline-red-600": note.errors[:title].any?}] %>
+      <% if note.errors.any? %>
+        <div id="error_explanation" class="bg-red-50 border border-red-200 text-red-600 px-5 py-4 rounded-2xl mb-10">
+          <h2 class="font-semibold mb-2"><%= pluralize(note.errors.count, "error") %> prohibited this note from being saved:</h2>
+          <ul class="list-disc ml-5 space-y-1 text-sm">
+            <% note.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <!-- Form Title -->
+      <div class="mb-10">
+        <h1 class="text-4xl font-semibold text-zinc-800 tracking-tight">New Note</h1>
+        <p class="text-zinc-500 mt-2">Fill in the details below</p>
+      </div>
+
+      <!-- Title -->
+      <div class="mb-8">
+        <%= form.label :title, class: "block text-zinc-500 text-sm font-medium mb-2" %>
+        <%= form.text_field :title, 
+          placeholder: "Note title...",
+          class: "w-full text-2xl font-medium bg-transparent border-0 border-b-2 border-zinc-200 focus:border-blue-500 focus:ring-0 px-1 py-2 placeholder-zinc-400" %>
+      </div>
+
+      <!-- Description -->
+      <div class="mb-10">
+        <%= form.label :description, class: "block text-zinc-500 text-sm font-medium mb-2" %>
+        <%= form.text_area :description, 
+          rows: 12,
+          placeholder: "Write your note here...",
+          class: "w-full bg-white border border-zinc-200 rounded-2xl px-5 py-4 text-base leading-relaxed focus:outline-none focus:border-blue-500 resize-y min-h-[280px]" %>
+      </div>
+
+      <!-- Two columns for Color & User ID -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+        <!-- Color -->
+        <div>
+          <%= form.label :color, class: "block text-zinc-500 text-sm font-medium mb-2" %>
+          <%= form.text_field :color, 
+            placeholder: "#ffffff or color name",
+            class: "w-full bg-white border border-zinc-200 rounded-2xl px-5 py-4 focus:outline-none focus:border-blue-500" %>
+        </div>
+
+        <!-- User ID -->
+        <div>
+          <%= form.label :user_id, class: "block text-zinc-500 text-sm font-medium mb-2" %>
+          <%= form.text_field :user_id, 
+            class: "w-full bg-white border border-zinc-200 rounded-2xl px-5 py-4 focus:outline-none focus:border-blue-500" %>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="flex justify-end">
+        <%= form.submit "Save Note", 
+          class: "px-10 py-4 bg-zinc-900 hover:bg-black text-white font-medium rounded-2xl transition-all duration-200 text-lg shadow-sm" %>
+      </div>
+
+    <% end %>
+
   </div>
-
-  <div class="my-5">
-    <%= form.label :description %>
-    <%= form.text_field :description, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": note.errors[:description].none?, "border-red-400 focus:outline-red-600": note.errors[:description].any?}] %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :color %>
-    <%= form.text_field :color, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": note.errors[:color].none?, "border-red-400 focus:outline-red-600": note.errors[:color].any?}] %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, class: ["block shadow-sm rounded-md border px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": note.errors[:user_id].none?, "border-red-400 focus:outline-red-600": note.errors[:user_id].any?}] %>
-  </div>
-
-  <div class="inline">
-    <%= form.submit class: "w-full sm:w-auto rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer" %>
-  </div>
-<% end %>
+</div>
